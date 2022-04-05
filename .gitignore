@@ -1,1 +1,4 @@
+# Ignoring large .csv data files
+*.csv
+
 .github/**
