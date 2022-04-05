@@ -17,7 +17,10 @@ The aim of this project was to answer the following questions:
 * Is there a relationship between age and trip duration?
 
 ### Files used
-Include the files used
+The following files were provided by Udacity:
+* chicago.csv
+* new_york_city.csv
+* washington.csv
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
