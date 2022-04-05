@@ -23,4 +23,4 @@ The following files were provided by Udacity:
 * washington.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+Data provided by Motivate, a bike share system provider for many major cities in the United States.
