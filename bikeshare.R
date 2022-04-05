@@ -1,9 +1,3 @@
-# Installing packages
-install.packages('ggplot2')
-install.packages('dplyr')
-install.packages('ggthemes')
-install.packages('ggsci')
-
 # Loading packages
 library(ggplot2)
 library(dplyr)
@@ -45,13 +39,13 @@ ggplot(df, aes(x = Start.Dow)) +
   scale_x_discrete(labels = c('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')) +
   geom_vline(xintercept = 5.5, alpha = 0.5, linetype = 2) +
   coord_cartesian(ylim = c(30000, 55000)) +
-  labs(x = 'Day of the week', 
-      y = 'Number of travels', 
+  labs(x = 'Day of the week',
+      y = 'Number of travels',
       title = 'Number of travels by day of the week and city',
-      subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') + 
+      subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~ City) +
   theme_few(base_size = 13) +
-  theme(legend.position = 'none', 
+  theme(legend.position = 'none',
         panel.background = element_rect(fill = 'ivory'))
 
 # Question 2
@@ -68,13 +62,13 @@ by(df$Start.Dow, list(df$Trip.Type, df$City), summary)
 ggplot(df, aes(x = Start.Dow)) +
   geom_bar(aes(fill = Trip.Type), color = 'black', lwd = 0.1) +
   scale_x_discrete(labels = c('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')) +
-  coord_cartesian(ylim = c(30000, 55000)) + 
+  coord_cartesian(ylim = c(30000, 55000)) +
   geom_vline(xintercept = 5.5, alpha = 0.5, linetype = 2) +
-  labs(x = 'Day of the week', 
-       y = 'Number of travels', 
+  labs(x = 'Day of the week',
+       y = 'Number of travels',
        fill = 'Trip type',
        title = 'Type of trip by day of the week and city',
-       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') + 
+       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City)+
   theme_few(base_size = 13) +
   theme(panel.background = element_rect(fill = 'ivory'))
@@ -86,10 +80,10 @@ ggplot(subset(df, Trip.Type == 'Round trip'), aes(x = Start.Dow)) +
   scale_x_discrete(labels = c('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')) +
   scale_y_continuous(limits = c(0, 2800), breaks = seq(0, 2800, 700)) +
   geom_vline(xintercept = 5.5, alpha = 0.5, linetype = 2) +
-  labs(x = 'Day of the week', 
-       y = 'Number of travels', 
+  labs(x = 'Day of the week',
+       y = 'Number of travels',
        title = 'Round trips by day of the week and city',
-       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') + 
+       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City)+
   theme_few(base_size = 13) +
   theme(legend.position = 'none', panel.background = element_rect(fill = 'ivory'))
@@ -98,12 +92,12 @@ ggplot(subset(df, Trip.Type == 'Round trip'), aes(x = Start.Dow)) +
 # Appending data frames for NY and Chicago, where age is available
 ny_chi <- rbind(ny, chi)
 
-# Creating age column 
+# Creating age column
 # This is just an estimate since only the year of birth was provided
 ny_chi$Age <- as.integer(2017-ny_chi$Birth.Year)
 
 # Creating age categories
-ny_chi <- mutate(ny_chi, Age.Cat = 
+ny_chi <- mutate(ny_chi, Age.Cat =
                    case_when(Age < 15 ~ 'Children',
                              Age >= 15 & Age < 25 ~ 'Youth',
                              Age >= 25 & Age < 35 ~ 'Adults (25-34)',
@@ -119,23 +113,23 @@ ny_chi$Age.Cat <- as.factor(ny_chi$Age.Cat)
 ny_chi$City <- as.factor(ny_chi$City)
 ny_chi$User.Type <- as.factor(ny_chi$User.Type)
 ny_chi$Age.Cat <- factor(ny_chi$Age.Cat,
-                           levels = c('Children', 'Youth', 'Adults (25-34)', 'Adults (35-44)', 
+                           levels = c('Children', 'Youth', 'Adults (25-34)', 'Adults (35-44)',
                                       'Adults (45-54)', 'Adults (55-64)', 'Seniors'))
 
 # Question 3
 # Age distribution in cities
-## Summary  
+## Summary
 by(ny_chi$Age.Cat, ny_chi$City, summary)
 
 ## Plot 1
 ggplot(subset(ny_chi, Age.Cat != 'Children'), aes(x = Age.Cat)) +
   geom_bar(aes(fill = City), color = 'black', lwd = 0.1) +
   scale_x_discrete() +
-  coord_cartesian() + 
-  labs(x = 'Age group', 
-       y = 'Number of travels', 
+  coord_cartesian() +
+  labs(x = 'Age group',
+       y = 'Number of travels',
        title = 'Number of trips by age group and city',
-       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') + 
+       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~ City)+
   theme_few(base_size = 13) +
   theme(legend.position = 'none',
@@ -155,8 +149,8 @@ ggplot(ny_chi, aes(x = Age, y = Trip.Duration)) +
   geom_jitter(aes(color = City), shape = 20, alpha = 0.025) +
   scale_y_continuous(limits = c(0, 60)) +
   scale_x_continuous(limits = c(12, 80)) +
-  labs(x = 'Age (years)', 
-       y = 'Trip length (min)', 
+  labs(x = 'Age (years)',
+       y = 'Trip length (min)',
        title = 'Trip length versus Age',
        subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City) +
