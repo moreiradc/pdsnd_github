@@ -44,7 +44,7 @@ ggplot(df, aes(x = Start.Dow)) +
       title = 'Number of travels by day of the week and city',
       subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~ City) +
-  theme_few(base_size = 13) +
+  theme_few(base_size = 12) +
   theme(legend.position = 'none',
         panel.background = element_rect(fill = 'ivory'))
 
@@ -70,7 +70,7 @@ ggplot(df, aes(x = Start.Dow)) +
        title = 'Type of trip by day of the week and city',
        subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City)+
-  theme_few(base_size = 13) +
+  theme_few(base_size = 12) +
   theme(panel.background = element_rect(fill = 'ivory'))
 
 ## Plot 2
@@ -85,7 +85,7 @@ ggplot(subset(df, Trip.Type == 'Round trip'), aes(x = Start.Dow)) +
        title = 'Round trips by day of the week and city',
        subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City)+
-  theme_few(base_size = 13) +
+  theme_few(base_size = 12) +
   theme(legend.position = 'none', panel.background = element_rect(fill = 'ivory'))
 
 # Prep for questions 3 and 4
@@ -131,7 +131,7 @@ ggplot(subset(ny_chi, Age.Cat != 'Children'), aes(x = Age.Cat)) +
        title = 'Number of trips by age group and city',
        subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~ City)+
-  theme_few(base_size = 13) +
+  theme_few(base_size = 12) +
   theme(legend.position = 'none',
         axis.text.x = element_text(angle = 45, vjust = 0.5),
         panel.background = element_rect(fill = 'ivory'))
@@ -154,6 +154,6 @@ ggplot(ny_chi, aes(x = Age, y = Trip.Duration)) +
        title = 'Trip length versus Age',
        subtitle = 'Data for Jan, 2017 - Jun, 2017. Source: https://www.motivateco.com/') +
   facet_wrap(~City) +
-  theme_few(base_size = 13) +
+  theme_few(base_size = 12) +
   theme(legend.position = 'none',
         panel.background = element_rect(fill = 'ivory'))
